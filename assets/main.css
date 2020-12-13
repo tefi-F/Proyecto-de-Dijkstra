@@ -1,0 +1,37 @@
+.__________cytoscape_container {
+  position: relative;
+}
+
+body {
+  font-family: helvetica;
+  font-size: 15px;
+}
+
+#cy {
+  width: 100%;
+  height: 90%;
+  z-index: 999;
+}
+
+h1 {
+  opacity: 0.5;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+button {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.line {
+  clear: left;
+  height: 25px;
+  margin-top: 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+.radio {
+  margin-left: 25px;
+}
