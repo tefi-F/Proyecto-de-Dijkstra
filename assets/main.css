@@ -1,6 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: Arial,sans-serif;
+}
+
 body {
   font-family: helvetica;
-  font-size: 15px;
+  font-size: 1.5rem;
 }
 
 #cy {
@@ -11,21 +22,21 @@ body {
 
 h1 {
   opacity: 0.5;
-  font-size: 1em;
+  font-size: 1.0rem;
   font-weight: bold;
 }
 
 button {
-  font-size: 15px;
-  margin-right: 10px;
+  font-size: 1.5rem;
+  margin-right: 1.0rem;
 }
 
 .line {
   clear: left;
-  height: 25px;
-  margin-top: 6px;
-  margin-right: 6px;
-  margin-bottom: 6px;
+  height: 2.5rem;
+  margin-top: 6.0rem;
+  margin-right: 6.0rem;
+  margin-bottom: 6.0rem;
 }
 
 .radio {
