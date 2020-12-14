@@ -1,4 +1,4 @@
-// Esta función inicializa el canvas al entrar a la pagina
+// Esta función inicializa el canvas al entrar a la pagina web
 const generateGraphInitial = () => {
   if (window.goSamples) goSamples();
   let $ = go.GraphObject.make;
@@ -23,7 +23,7 @@ const generateGraphInitial = () => {
     $(go.TextBlock, { margin: 5 }, new go.Binding("text", "key"))
   );
   myDiagram.linkTemplate = $(
-    go.Link, // the whole link panel
+    go.Link, 
     {
       selectable: false,
       curve: go.Link.Bezier,
@@ -43,7 +43,6 @@ const generateGraphInitial = () => {
     let curobj = diagram.findPartAt(e.documentPoint, false);
     if (curobj !== null) {
       if (count < 2) {
-        // add the part to the selection
         if (!curobj.isSelected) {
           let part = curobj;
           if (part !== null) part.isSelected = true;
@@ -100,3 +99,8 @@ const generateGraphAleatory = () => {
   myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
   console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };
+
+const generateGraph = () => {
+  const sz = document.getElementById("")
+  if ()
+}
