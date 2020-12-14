@@ -18,7 +18,7 @@ const generateGraphInitial = () => {
     $(go.Shape, "Circle", {
       fill: go.Brush.randomColor(128),
       strokeWidth: 3,
-      desiredSize: new go.Size(50, 50),
+      desiredSize: new go.Size(60, 60),
     }),
     $(go.TextBlock, { margin: 5 }, new go.Binding("text", "key"))
   );
@@ -55,7 +55,6 @@ const generateGraphInitial = () => {
         }
       }
     } else if (e.left && !(e.control || e.meta) && !e.shift) {
-      // left click on background with no modifier: clear selection
       diagram.clearSelection();
     }
   };
@@ -99,5 +98,5 @@ const generateGraphAleatory = () => {
     });
   }
   myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-  console.log("Que rico Grafo ❤🧡💛💚💙💜🤎🖤🤍");
+  console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };

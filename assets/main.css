@@ -39,6 +39,11 @@ button {
   margin-bottom: 6.0rem;
 }
 
+.input-initial {
+  width: 7.5rem;
+  height: 2.5rem;
+}
+
 .radio {
   margin-left: 25px;
 }
