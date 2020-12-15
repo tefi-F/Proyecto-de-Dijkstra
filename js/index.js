@@ -87,8 +87,13 @@ const generateLink = () => {
   let valueR1 = document.getElementById("valueR1").value;
   let valueR2 = document.getElementById("valueR2").value;
   let peso = parseInt(document.getElementById("valuePeso").value);
-  console.info(text)
+  console.info(text);
   const found1 = text.includes(valueR1);
+  if (valueR1 === valueR2) {
+    return console.error(
+      `Los valores ${valueR1} y ${valueR2} no pueden ser iguales`
+    );
+  }
   const found2 = text.includes(valueR2);
   if (!found1) {
     return console.error(`El valor de "${valueR1}" no fue establecido`);
@@ -99,9 +104,10 @@ const generateLink = () => {
   if (peso < 1) {
     return console.error(`El valor de "${peso}" no es posible`);
   }
-  const paths = {};
-  paths[`${valueR1}`] = {[`${valueR2}`]: peso};
-  grafo = Object.assign(paths);
-  console.info(grafo)
-  console.log(found1, found2, peso);
+  if (grafo[`${valueR1}`]) {
+    grafo[`${valueR1}`] = { ...grafo[`${valueR1}`], [`${valueR2}`]: peso };
+  } else {
+    grafo[`${valueR1}`] = { [`${valueR2}`]: peso };
+  }
+  console.info(grafo);
 };
