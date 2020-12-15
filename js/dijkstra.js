@@ -8,14 +8,15 @@ class Graph {
     this.adjacentList[node] = [];
   }
   addEdge(node1, node2, weight) {
-    this.adjacentList[node1].push({node: node2, weight: weight});
-    this.adjacentList[node2].push({node: node1, weight: weight});
+    this.adjacentList[node1].push({ node: node2, weight: weight });
+    this.adjacentList[node2].push({ node: node1, weight: weight });
   }
   dijkstra(startNode, endNode) {
-    let times = {}, backtrace = {};
+    let times = {},
+      backtrace = {};
     let pq = new PriorityQueue();
     times[startNode] = 0;
-    this.nodes.forEach(node => {
+    this.nodes.forEach((node) => {
       if (node !== startNode) {
         times[node] = Infinity;
       }
@@ -24,7 +25,7 @@ class Graph {
     while (!pq.isEmpty()) {
       let shortestStep = pq.dequeue();
       let currentNode = shortestStep[0];
-      this.adjacentList[currentNode].forEach(neighbor => {
+      this.adjacentList[currentNode].forEach((neighbor) => {
         let time = times[currentNode] + neighbor.weight;
         if (time < times[neighbor.node]) {
           times[neighbor.node] = time;
@@ -39,7 +40,7 @@ class Graph {
       path.unshift(backtrace[lastStep]);
       lastStep = backtrace[lastStep];
     }
-    return `El camino ${path} con una distancia de ${times[endNode]}`;
+    return `El camino más corto es ${path} con una distancia de ${times[endNode]}`;
   }
 }
 
@@ -53,8 +54,8 @@ class PriorityQueue {
     } else {
       let added = false;
       for (let i = 1; i < this.collection.length; ++i) {
-        if (element[1] < this.collection[i-1][1]) {
-          this.collection.splice(i-1, 0, element);
+        if (element[1] < this.collection[i - 1][1]) {
+          this.collection.splice(i - 1, 0, element);
           added = true;
           break;
         }
@@ -69,17 +70,80 @@ class PriorityQueue {
     return value;
   }
   isEmpty() {
-    return (this.collection.length === 0);
+    return this.collection.length === 0;
   }
 }
 
-const Grafo = new Graph();
-console.log(Grafo);
-Grafo.addNode("joan");
-Grafo.addNode("estefany");
-Grafo.addNode("lisa");
-Grafo.addEdge("joan", "estefany", 10);
-Grafo.addEdge("joan", "lisa", 2);
-Grafo.addEdge("estefany", "lisa", 5);
-console.log(Grafo);
-console.log(Grafo.dijkstra("lisa", "estefany"));
+const graph = new Graph();
+const generateLink = () => {
+  const messages = document.getElementById("messageGenerate");
+  let valueR1 = document.getElementById("valueR1").value;
+  let valueR2 = document.getElementById("valueR2").value;
+  let peso = parseInt(document.getElementById("valuePeso").value);
+  let count1 = 0;
+  let count2 = 0;
+  const found1 = text.includes(valueR1);
+  if (valueR1 === valueR2) {
+    console.error(`Los valores ${valueR1} y ${valueR2} no pueden ser iguales`);
+    return (messages.innerHTML = `<h1 style="color: red;">Error los valores "${valueR1}" y "${valueR2}" no pueden ser iguales</h1>`);
+  }
+  const found2 = text.includes(valueR2);
+  if (!found1) {
+    console.error(`El valor de "${valueR1}" no fue establecido`);
+    return (messages.innerHTML = `<h1 style="color: red;">Error el valor "${valueR1}" no fue establecido</h1>`);
+  }
+  if (!found2) {
+    console.error(`El valor de "${valueR2}" no fue establecido`);
+    return (messages.innerHTML = `<h1 style="color: red;">Error el valor "${valueR2}" no fue establecido</h1>`);
+  }
+  if (peso < 1) {
+    console.error(`El valor de "${peso}" no es posible`);
+    return (messages.innerHTML = `<h1 style="color: red;">Error el valor "${peso}" no es posible</h1>`);
+  }
+  console.log(nodeDataAr);
+  nodeDataAr.map((el) => {
+    if (el.text !== valueR1) {
+      count1++;
+    }
+    if (el.text !== valueR2) {
+      count2++;
+    }
+  });
+  if (count1 === nodeDataAr.length && count2 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR1,
+      text: valueR1,
+    });
+    nodeDataAr.push({
+      key: valueR2,
+      text: valueR2,
+    });
+  } else if (count2 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR2,
+      text: valueR2,
+    });
+  } else if (count1 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR1,
+      text: valueR1,
+    });
+  }
+  linkDataAr.push({
+    from: valueR1,
+    to: valueR2,
+    text: peso,
+  });
+  graph.addEdge(valueR1, valueR2, peso);
+  myDiagram.model = new go.GraphLinksModel(nodeDataAr, linkDataAr);
+  console.log(graph);
+  console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
+};
+
+const pathShort = () => {
+  const ans = document.getElementById("answerFinish");
+  const start = document.getElementById("start").value;
+  const end = document.getElementById("end").value;
+  console.log(start, end);
+  ans.innerHTML = "" + graph.dijkstra(start, end);
+};
