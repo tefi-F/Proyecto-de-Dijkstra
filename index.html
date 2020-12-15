@@ -29,39 +29,112 @@
     ></script>
   </head>
   <body onload="generateGraphInitial();">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size: 1.6rem; border-radius: 0;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="img/Logo.jpg"></a>
+        <a class="navbar-brand" href="#" style="font-size: 3.0rem;">GRAFOS</a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Teoria<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Soluciones<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Algoritmo<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Contactenos<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <main>
       <h1><center>ALGORITMO DE DIJKSTRA</center></h1>
-      <button class="btn btn-primary" onclick="generateGraphAleatory();">Dibujar</button>
-      <div
-        id="myDiagramDiv"
-        style="
-          border: 0.2rem solid white;
-          background: white;
-          width: 50rem;
-          height: 50rem;
-          position: relative;
-          -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        "
-      >
-        <canvas
-          id="canvas"
-          tabindex="0"
-          width="50rem"
-          height="50rem"
-          style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            user-select: none;
-            width: 100%;
-            height: 100%;
-          "
-          >Este texto se muestra si su navegador no es compatible con el
-          elemento HTML de Canvas.
-        </canvas>
+      
+      <div style="display: flex">
+        <p>Tamaño:</p>
+        <input
+          type="number"
+          placeholder="value"
+          id="len"
+          style="width: 6rem; height: 4rem"
+          required
+        />
+        <button onclick="generarNames();" style="width: 6rem;">Ingresar</button>
+      </div>
+      <div id="messageGenerate"></div>
+      <div id="newPathsGenerate"></div>
       </div>
     </main>
-    <script src="./js/app.js"></script>
+    
+    <footer>
+      <div class="container-footer-all">
+        <div class="container-body">
+          <div class="colum1">
+            <h1>Creadores de la pagina e información</h1>
+            <p>Esta pagina fue creada por estudiantes DEL 4TO SEMESTRE de la Facultad
+            Ingenieria de Sistemas de la Universidad Nacional del Centro del Perú.
+            </p>
+            <img style="width:25.0rem; height:14.0rem; margin-left: 5.5rem" src="img/uncp.jpg" >
+          </div>
+            <div class="colum2">
+              <h1>Redes Sociales</h1>
+              <div class="row">
+                <a href="https://www.facebook.com/"><img src="img/facebook.png"></a>
+                <label>Siguenos en Facebook</label>
+              </div>
+              <div class="row">
+                <a href="https://twitter.com/?lang=es"><img src="img/twitter.png"></a>
+                <label>Siguenos en Twitter</label>
+              </div>
+              <div class="row">
+                <a href="https://www.instagram.com/?hl=es-la"><img src="img/instagram.png">
+                  <label>Siguenos en Instagram</label>
+              </div>
+              <div class="row">
+                <a href="#"><img src="img/google-plus.png"></a> 
+                <label>Siguenos por Google </label>
+              </div>
+              <div class="row">
+                <a href="#"><img src="img/tumblr.png"></a>
+                <label>Siguenos en Tumblr</label>
+              </div>
+            </div>
+            <div class="colum3">
+              <h1>Información Contacto</h1>
+              <div class="row2">
+                <img src="img/house.png">
+                <label>Dirección:Mariscal Castilla 3909</label>
+              </div>
+              <div class="row2">
+                <img src="img/smartphone.png">
+                <label>Cel :983417735<br>Cel1:983328458</label>
+              </div>
+              <div class="row2">
+                <img src="img/contact.png">
+                <label>Email:<br>fisnavi2019@gmail.com</label>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="container-footer">
+        <div class="footer">
+          <div class="copyright">
+            © 2020 Todos los Derechos Reservados Universitarios| <a href="">FIS_UNCP</a>
+          </div>
+          <div class="information">
+            <a href="">Informacion </a> | <a href="">Privacion y Politica</a> | <a href="">Terminos y Condiciones</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="js/index.js"></script>
   </body>
 </html>
