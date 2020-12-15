@@ -1,5 +1,6 @@
 const ar = [];
 const text = [];
+let grafo = {};
 
 const dijkstra = (array = undefined) => {
   if (array === undefined) {
@@ -15,21 +16,37 @@ const dijkstra = (array = undefined) => {
       );
     }
   }
-  console.log("Tobo bn ❤");
 };
 
 const generarNames = () => {
   const messages = document.getElementById("messageGenerate");
-  let len = parseInt(document.getElementById("len").value);
-  for (let i = 0; i < len; ++i) {
-    messages.innerHTML += `<input type="text" class="input-initial" id="text${i}" placeholder="name">`;
+  let len = document.getElementById("len").value;
+  if (!len) {
+    console.error(
+      "Error no puede entregar ese valor para continuar con el programa"
+    );
+    return (messages.innerHTML = `<h1 style="color: red;">Error el valor ${len} no es válido</h1>
+    <p style="color: blue">para seguir intente de ingresando un número positivo para la cantidad de nodos del grafo</p>`);
   }
-  messages.innerHTML += `<button class="btn btn-success" onclick="generateArray();">Ingresar Nodos</button>`
-}
+  len = parseInt(len);
+  if (len < 1) {
+    console.error(
+      "Error no puede entregar valore menores a 0 para seguir con el programa"
+    );
+    return (messages.innerHTML = `<h1 style="color: red;">Error el valor ${len} no es válido</h1>
+    <p style="color: blue">para seguir intente de ingresando un número positivo para la cantidad de nodos del grafo</p>`);
+  }
+  messages.innerHTML = "";
+  for (let i = 0; i < len; ++i) {
+    messages.innerHTML += `<input type="text" class="input-initial" id="text${i}" placeholder="name" required>`;
+  }
+  messages.innerHTML += `<button class="btn btn-success" onclick="generateArray();">Ingresar Nodos</button>`;
+};
 
 const generateArray = () => {
   const messages = document.getElementById("messageGenerate");
   let len = parseInt(document.getElementById("len").value);
+  console.info(len);
   if (len < 1) {
     console.error(
       "Error no puede entregar 0 valores para continuar con el cálculo"
@@ -42,6 +59,7 @@ const generateArray = () => {
     return (messages.innerHTML = `<h1 style="color: red;">Error no se puede generar más de 20 nodos</h1>`);
   }
   for (let i = 0; i < len; i++) {
+    console.info(text[i]);
     text[i] = document.getElementById(`text${i}`).value;
   }
   console.log(text);
@@ -51,27 +69,39 @@ const generateArray = () => {
       ar[i][j] = 0;
     }
   }
+  messages.innerHTML = "";
   messages.innerHTML += `<div style="margin: 0.8rem;">
   <p>¿Cuantos caminos hay en el grafo?:</p>
-  <input type="text" placeholder="graph" class="input-initial" id="valueR1">
+  <input type="text" placeholder="graph" class="input-initial" id="valueR1" required>
   ----- path -----
-  <input type="text" placeholder="graph" class="input-initial" id="valueR2">
-  <button type="" class="btn btn-primary" onclick="generarGraph();">Generar Camino</button>
+  <input type="text" placeholder="graph" class="input-initial" id="valueR2" required>
+  ----- length -----
+  <input type="number" placeholder="value" class="input-initial" id="valuePeso" required>
+  <button type="" class="btn btn-primary" onclick="generateLink();">Generar Camino</button>
   </div>`;
   console.info("Si se pudo crear el array de valores inicializados en 0");
   console.info(ar);
 };
 
-const generarGraph = () => {
+const generateLink = () => {
   let valueR1 = document.getElementById("valueR1").value;
   let valueR2 = document.getElementById("valueR2").value;
+  let peso = parseInt(document.getElementById("valuePeso").value);
+  console.info(text)
   const found1 = text.includes(valueR1);
   const found2 = text.includes(valueR2);
-  if (found1) {
+  if (!found1) {
     return console.error(`El valor de "${valueR1}" no fue establecido`);
   }
-  if (found2) {
+  if (!found2) {
     return console.error(`El valor de "${valueR2}" no fue establecido`);
   }
-  console.log(found1, found2);
-}
+  if (peso < 1) {
+    return console.error(`El valor de "${peso}" no es posible`);
+  }
+  const paths = {};
+  paths[`${valueR1}`] = {[`${valueR2}`]: peso};
+  grafo = Object.assign(paths);
+  console.info(grafo)
+  console.log(found1, found2, peso);
+};
