@@ -91,7 +91,6 @@ const generateLink = () => {
   let peso = parseInt(document.getElementById("valuePeso").value);
   let count1 = 0;
   let count2 = 0;
-  console.info(text);
   const found1 = text.includes(valueR1);
   if (valueR1 === valueR2) {
     return console.error(
@@ -113,6 +112,7 @@ const generateLink = () => {
   } else {
     grafo[`${valueR1}`] = { [`${valueR2}`]: peso };
   }
+  console.log(grafo);
   console.log(nodeDataAr);
   nodeDataAr.map((el) => {
     if (el.text !== valueR1) {
