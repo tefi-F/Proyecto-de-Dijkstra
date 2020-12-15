@@ -99,8 +99,3 @@ const generateGraphAleatory = () => {
   myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
   console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };
-
-const generateGraph = () => {
-  const sz = document.getElementById("")
-  if ()
-}

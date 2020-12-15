@@ -1,5 +1,7 @@
 const ar = [];
 const text = [];
+const nodeDataAr = [];
+const linkDataAr = [];
 let grafo = {};
 
 const dijkstra = (array = undefined) => {
@@ -87,6 +89,8 @@ const generateLink = () => {
   let valueR1 = document.getElementById("valueR1").value;
   let valueR2 = document.getElementById("valueR2").value;
   let peso = parseInt(document.getElementById("valuePeso").value);
+  let count1 = 0;
+  let count2 = 0;
   console.info(text);
   const found1 = text.includes(valueR1);
   if (valueR1 === valueR2) {
@@ -109,5 +113,40 @@ const generateLink = () => {
   } else {
     grafo[`${valueR1}`] = { [`${valueR2}`]: peso };
   }
-  console.info(grafo);
+  console.log(nodeDataAr);
+  nodeDataAr.map((el) => {
+    if (el.text !== valueR1) {
+      count1++;
+    }
+    if (el.text !== valueR2) {
+      count2++;
+    }
+  });
+  if (count1 === nodeDataAr.length && count2 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR1,
+      text: valueR1,
+    });
+    nodeDataAr.push({
+      key: valueR2,
+      text: valueR2,
+    });
+  } else if (count2 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR2,
+      text: valueR2,
+    });
+  } else if (count1 === nodeDataAr.length) {
+    nodeDataAr.push({
+      key: valueR1,
+      text: valueR1,
+    });
+  }
+  linkDataAr.push({
+    from: valueR1,
+    to: valueR2,
+    text: peso,
+  });
+  myDiagram.model = new go.GraphLinksModel(nodeDataAr, linkDataAr);
+  console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };
