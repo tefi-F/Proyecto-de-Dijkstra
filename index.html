@@ -28,7 +28,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body onload="generateGraphInitial();">
+  <body onload="generateGraphInitial();" style="background: url(img/fondo2.jpg);background-size: 100%;">
     <header>
       <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark"
@@ -97,9 +97,9 @@
       <div
         id="myDiagramDiv"
         style="
-          border: 0.2rem solid white;
-          background: white;
-          width: 50rem;
+          border: 0.2rem solid rgba(255, 255, 255, 0.479);
+          background: rgba(255, 255, 255, 0.658);
+          width: 80rem;
           height: 50rem;
           position: relative;
           -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -123,6 +123,7 @@
           elemento HTML de Canvas.
         </canvas>
       </div>
+      <br>
       <div class="d-flex justify-content-center">
         <p>Ingrese de donde a donde se buscara el camino más corto:</p>
         <input type="text" id="start" />
@@ -130,6 +131,7 @@
         <button onclick="pathShort();" class="btn btn-success">Calcular</button>
       </div>
       <div id="answerFinish"></div>
+      <br>
     </main>
     <footer>
       <div class="container-footer-all">
