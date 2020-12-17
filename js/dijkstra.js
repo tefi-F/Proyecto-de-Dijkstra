@@ -151,35 +151,26 @@ const pathShort = () => {
   path.map((el, index) => {});
 };
 
-// This event handler is declared in the node template and is called when a node's
-//   Node.isSelected property changes value.
-// When a node is selected show distances from the first selected node.
-// When a second node is selected, highlight the shortest path between two selected nodes.
-// If a node is deselected, clear all highlights.
 const nodeSelectionChanged = (node) => {
   console.log(node.lb.key);
   let diagram = node.diagram;
   if (diagram === null) return;
   diagram.clearHighlighteds();
   if (node.isSelected) {
-    let sel = document.getElementById("myPaths");
-    sel.innerHTML = "";
     let begin = diagram.selection.first();
     if (diagram.selection.count === 2) {
       let end = node; // just became selected
       console.log("Hola mundo", begin.lb.key, end.lb.key);
       highlightShortestPath(begin, end);
-      listAllPaths(begin, end);
+      // listAllPaths(begin, end);
     }
   }
 };
 
-// Assume links are directional.
 const highlightShortestPath = (begin, end) => {
   highlightPath(collectAllPaths(begin, end));
 };
 
-// Highlight a particular path, a List of Nodes.
 const highlightPath = (path) => {
   myDiagram.clearHighlighteds();
   for (let i = 0; i < path.count - 1; i++) {
@@ -195,9 +186,10 @@ const collectAllPaths = (begin, end) => {
   let path = new go.List(/*go.List*/);
   let pathS = graph.dijkstra(begin.lb.key, end.lb.key);
   const find = (source) => {
+    console.log(source.findNodesOutOf());
     source.findNodesOutOf().each((n) => {
       console.log(n);
-      if (pathS.includes(n)) {
+      if (pathS.includes(n.lb.key)) {
         path.add(n);
       }
     });
