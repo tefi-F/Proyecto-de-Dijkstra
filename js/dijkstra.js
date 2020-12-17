@@ -174,7 +174,15 @@ const nodeSelectionChanged = (node) => {
       let end = node;
       finish.value = end.lb.key;
       const answer = graph.dijkstra(begin.lb.key, end.lb.key);
-      ans.innerHTML = answer[2];
+      ans.innerHTML = `<p style="
+            background: #999894;
+            color: white;
+            border-color: white;
+            width: 50rem;
+            height: 3.4rem;
+            font-size: 2.0rem;
+            text-align: center;
+          ">${answer[2]}</p>`;
     }
   }
 };

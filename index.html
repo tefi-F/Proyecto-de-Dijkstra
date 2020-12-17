@@ -28,7 +28,10 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <body onload="generateGraphInitial();" style="background: url(img/fondo2.jpg);background-size: 100%;">
+  <body
+    onload="generateGraphInitial();"
+    style="background: url(img/fondo2.jpg); background-size: 100%"
+  >
     <header>
       <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark"
@@ -46,8 +49,10 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#"><img src="img/Logo.jpg" /></a>
-        <a class="navbar-brand" href="#" style="font-size: 3rem">ALGORITMO DE DIJKSTRA</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
+        <a class="navbar-brand" href="#" style="font-size: 3rem"
+          >ALGORITMO DE DIJKSTRA</a
+        >
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link" href="#"
@@ -74,62 +79,189 @@
       </nav>
     </header>
     <main>
-      <div align="center">
-        <p style="color: white; background: #999894; width: 80px; height: 30px; font-size: 15px; border-color: white; font-size: 18px; margin-top: +10px;">Tamaño:</p>
+      <div align="center" class="d-flex justify-content-center">
+        <p
+          style="
+            margin-top: 1.4%;
+            color: white;
+            background: #999894;
+            width: 80px;
+            height: 3.4rem;
+            font-size: 15px;
+            border-color: white;
+            font-size: 20px;
+            margin-top: +10px;
+          "
+        >
+          Tamaño:
+        </p>
         <input
           type="number"
           placeholder="value"
           id="len"
-          style="width: 80px; height: 30px; background: #999894; border-color: white;"
+          style="
+            margin-top: 1.2%;
+            margin-left: 2.0%;
+            width: 80px;
+            height: 3.4rem;
+            border-color: white;
+          "
           required
         />
-        <button onclick="generarNames();" style="width: 80px; height: 30px; font-size: 15px; color: white; border-color: white; font-size: 18px; text-align: center;" class="btn btn-success">Ingresar</button>
+        <button
+          onclick="generarNames();"
+          style="
+            margin-top: 1.2%;
+            margin-left: 2.0%;
+            font-size: 15px;
+            height: 3.6rem;
+            color: white;
+            border-color: white;
+            font-size: 18px;
+          "
+          class="btn btn-success"
+        >
+          Ingresar
+        </button>
       </div>
       <div id="messageGenerate"></div>
       <div id="newPathsGenerate"></div>
       <div align="center">
-      <button
-        onclick="generateGraphAleatory();"
-        style="width: 150px; height: 30px; color: white; background: #999894; font-size: 15px; border-color: white; margin-top: +18px;">
-        Dibujar Aleatorio
-      </button>
-      <div
-        id="myDiagramDiv"
-        style="
-          border: 0.2rem solid rgba(255, 255, 255, 0.479);
-          background: rgba(255, 255, 255, 0.658);
-          width: 80rem;
-          height: 50rem;
-          position: relative;
-          -webkit-tap-highlight-color: rgba(255, 255, 255, 0); margin-top: +30px"  >
-        <canvas
-          id="canvas"
-          tabindex="0"
-          width="50rem"
-          height="50rem"
+        <button
+          onclick="generateGraphAleatory();"
           style="
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            user-select: none;
-            width: 100%;
-            height: 100%;
+            width: 150px;
+            height: 30px;
+            color: white;
+            background: #999894;
+            font-size: 15px;
+            border-color: white;
+            margin-top: +18px;
           "
-          >Este texto se muestra si su navegador no es compatible con el
-          elemento HTML de Canvas.
-        </canvas>
+        >
+          Dibujar Aleatorio
+        </button>
+        <hr />
+        <div
+          style="
+            position: relative;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-right: 1.6%;
+            margin-left: 1%;
+          "
+          class="d-flex justify-content-center"
+        >
+          <div class="d-flex justify-content-center">
+            <div class="justify-content-center h-100">
+              <div class="card shadow">
+                <div class="card-body bg-dark">
+                  <h1
+                    class=""
+                    style="font-size: 1.8rem; color: white"
+                    align="center"
+                  >
+                    Representación en Grafo
+                  </h1>
+                  <div
+                    id="myDiagramDiv"
+                    style="
+                      border: 0.2rem solid white;
+                      background: white;
+                      width: 80rem;
+                      height: 80rem;
+                      position: relative;
+                      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+                    "
+                  >
+                    <canvas
+                      id="canvas"
+                      tabindex="0"
+                      width="80rem"
+                      height="80rem"
+                      style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 2;
+                        user-select: none;
+                        width: 100%;
+                        height: 100%;
+                      "
+                      >Este texto se muestra si su navegador no es compatible
+                      con el elemento HTML de Canvas.
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-      <br>
+      <br />
       <div class="d-flex justify-content-center">
-        <p style="background: #999894; color: white; border-color: white; width: 500px; height: 40px; font-size: 18px; text-align: center">Ingrese de donde a donde se buscara el camino más corto:</p>
-        <input type="text" id="start" style="background: white; color: black; border-color: white; width: 60px; height: 40px; font-size: 18px; text-align: center;" />
-        <input type="text" id="end" style="background: white; color: black; border-color: white; width: 60px; height: 40px; font-size: 18px; text-align: center;  "/>
-        <button onclick="pathShort();" class="btn btn-success" style="color: white; border-color: white; width: 70px; height: 40px; font-size: 15px; text-align: center;">Calcular</button>
+        <p
+          style="
+            background: #999894;
+            color: white;
+            border-color: white;
+            width: 55rem;
+            height: 3.4rem;
+            font-size: 2rem;
+            text-align: center;
+          "
+        >
+          Ingrese de donde a donde se buscara el camino más corto:
+        </p>
+        <input
+          type="text"
+          id="start"
+          placeholder="begin"
+          style="
+            background: white;
+            color: black;
+            border-color: white;
+            width: 60px;
+            height: 3.4rem;
+            font-size: 20px;
+            text-align: center;
+          "
+        />
+        <input
+          type="text"
+          id="end"
+          placeholder="end"
+          style="
+            background: white;
+            color: black;
+            border-color: white;
+            width: 60px;
+            height: 3.4rem;
+            font-size: 18px;
+            text-align: center;
+          "
+        />
+        <button
+          onclick="pathShort();"
+          class="btn btn-success"
+          style="
+            margin-left: 2%;
+            color: white;
+            border-color: white;
+            width: 70px;
+            height: 3.4rem;
+            font-size: 15px;
+            text-align: center;
+          "
+        >
+          Calcular
+        </button>
       </div>
       <div id="answerFinish"></div>
-      <br>
+      <br />
     </main>
     <footer>
       <div class="container-footer-all">
