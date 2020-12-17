@@ -53,6 +53,11 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+  body{
+    background: url(img/fondo1.jpg);
+    background-size: 100%;
+    
+  }
   
   html {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
