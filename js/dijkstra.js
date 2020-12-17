@@ -25,7 +25,6 @@ class Graph {
     while (!pq.isEmpty()) {
       let shortestStep = pq.dequeue();
       let currentNode = shortestStep[0];
-      console.log(pq);
       this.adjacentList[currentNode].forEach((neighbor) => {
         let time = values[currentNode] + neighbor.weight;
         if (time < values[neighbor.node]) {
@@ -165,6 +164,7 @@ const nodeSelectionChanged = (node) => {
   diagram.clearHighlighteds();
   if (node.isSelected) {
     let ans = document.getElementById("answerFinish");
+    let pathAnswer = document.getElementById("pathAnswer");
     let start = document.getElementById("start");
     let finish = document.getElementById("end");
     let begin = diagram.selection.first();
@@ -183,6 +183,24 @@ const nodeSelectionChanged = (node) => {
             font-size: 2.0rem;
             text-align: center;
           ">${answer[2]}</p>`;
+      for (let i = 0; i < answer[0].length; i++) {
+        if (i < answer[0].length - 1) {
+          console.log(answer[0][i]);
+          pathAnswer.innerHTML += `<p style="            
+            background: #999894;
+            color: white;
+            border-color: white;
+            font-size: 2.0rem;
+            text-align: center">${answer[0][i]}-----</p>`;
+        } else {
+          pathAnswer.innerHTML += `<p style="            
+            background: #999894;
+            color: white;
+            border-color: white;
+            font-size: 2.0rem;
+            text-align: center">${answer[0][i]}</p>`;
+        }
+      }
     }
   }
 };
