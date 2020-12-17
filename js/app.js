@@ -114,5 +114,4 @@ const generateGraphAleatory = () => {
     });
   }
   myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-  console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };

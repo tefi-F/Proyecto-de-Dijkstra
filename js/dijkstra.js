@@ -12,23 +12,24 @@ class Graph {
     this.adjacentList[node2].push({ node: node1, weight: weight });
   }
   dijkstra(startNode, endNode) {
-    let times = {},
+    let values = {},
       backtrace = {};
     let pq = new PriorityQueue();
-    times[startNode] = 0;
+    values[startNode] = 0;
     this.nodes.forEach((node) => {
       if (node !== startNode) {
-        times[node] = Infinity;
+        values[node] = Infinity;
       }
     });
     pq.enqueue([startNode, 0]);
     while (!pq.isEmpty()) {
       let shortestStep = pq.dequeue();
       let currentNode = shortestStep[0];
+      console.log(pq);
       this.adjacentList[currentNode].forEach((neighbor) => {
-        let time = times[currentNode] + neighbor.weight;
-        if (time < times[neighbor.node]) {
-          times[neighbor.node] = time;
+        let time = values[currentNode] + neighbor.weight;
+        if (time < values[neighbor.node]) {
+          values[neighbor.node] = time;
           backtrace[neighbor.node] = currentNode;
           pq.enqueue([neighbor.node, time]);
         }
@@ -41,9 +42,13 @@ class Graph {
       lastStep = backtrace[lastStep];
     }
     console.log(
-      `El camino más corto es ${path} con una distancia de ${times[endNode]}`
+      `El camino más corto es ${path} con una distancia de ${values[endNode]}`
     );
-    return path;
+    return [
+      path,
+      values[endNode],
+      `El camino más corto es ${path} con una distancia de ${values[endNode]}`,
+    ];
   }
 }
 
@@ -116,20 +121,24 @@ const generateLink = () => {
     nodeDataAr.push({
       key: valueR1,
       text: valueR1,
+      color: go.Brush.randomColor(128, 240),
     });
     nodeDataAr.push({
       key: valueR2,
       text: valueR2,
+      color: go.Brush.randomColor(128, 240),
     });
   } else if (count2 === nodeDataAr.length) {
     nodeDataAr.push({
       key: valueR2,
       text: valueR2,
+      color: go.Brush.randomColor(128, 240),
     });
   } else if (count1 === nodeDataAr.length) {
     nodeDataAr.push({
       key: valueR1,
       text: valueR1,
+      color: go.Brush.randomColor(128, 240),
     });
   }
   linkDataAr.push({
@@ -140,61 +149,32 @@ const generateLink = () => {
   graph.addEdge(valueR1, valueR2, peso);
   myDiagram.model = new go.GraphLinksModel(nodeDataAr, linkDataAr);
   console.log(graph);
-  console.log("Que rico Grafo 💘🧡💛💚💙💜🤎🖤🤍");
 };
 
 const pathShort = () => {
   const ans = document.getElementById("answerFinish");
-  // const start = document.getElementById("start").value;
-  // const end = document.getElementById("end").value;
-  let path = graph.dijkstra(start, end);
-  path.map((el, index) => {});
+  const start = document.getElementById("start").value;
+  const end = document.getElementById("end").value;
+  let answer = graph.dijkstra(start, end);
+  ans.innerHTML = answer[2];
 };
 
 const nodeSelectionChanged = (node) => {
-  console.log(node.lb.key);
   let diagram = node.diagram;
   if (diagram === null) return;
   diagram.clearHighlighteds();
   if (node.isSelected) {
+    let ans = document.getElementById("answerFinish");
+    let start = document.getElementById("start");
+    let finish = document.getElementById("end");
     let begin = diagram.selection.first();
+    ans.innerHTML = "";
+    start.value = begin.lb.key;
     if (diagram.selection.count === 2) {
-      let end = node; // just became selected
-      console.log("Hola mundo", begin.lb.key, end.lb.key);
-      highlightShortestPath(begin, end);
-      // listAllPaths(begin, end);
+      let end = node;
+      finish.value = end.lb.key;
+      const answer = graph.dijkstra(begin.lb.key, end.lb.key);
+      ans.innerHTML = answer[2];
     }
   }
-};
-
-const highlightShortestPath = (begin, end) => {
-  highlightPath(collectAllPaths(begin, end));
-};
-
-const highlightPath = (path) => {
-  myDiagram.clearHighlighteds();
-  for (let i = 0; i < path.count - 1; i++) {
-    let f = path.get(i);
-    let t = path.get(i + 1);
-    f.findLinksTo(t).each((l) => {
-      l.isHighlighted = true;
-    });
-  }
-};
-
-const collectAllPaths = (begin, end) => {
-  let path = new go.List(/*go.List*/);
-  let pathS = graph.dijkstra(begin.lb.key, end.lb.key);
-  const find = (source) => {
-    console.log(source.findNodesOutOf());
-    source.findNodesOutOf().each((n) => {
-      console.log(n);
-      if (pathS.includes(n.lb.key)) {
-        path.add(n);
-      }
-    });
-  };
-  find(begin, end);
-  console.log(path);
-  return path;
 };

@@ -58,4 +58,3 @@ const generateArray = () => {
   </div>`;
   console.info("Si se pudo crear el array de valores inicializados en 0");
 };
-
