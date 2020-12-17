@@ -40,7 +40,10 @@ class Graph {
       path.unshift(backtrace[lastStep]);
       lastStep = backtrace[lastStep];
     }
-    return `El camino más corto es ${path} con una distancia de ${times[endNode]}`;
+    console.log(
+      `El camino más corto es ${path} con una distancia de ${times[endNode]}`
+    );
+    return path;
   }
 }
 
@@ -142,8 +145,64 @@ const generateLink = () => {
 
 const pathShort = () => {
   const ans = document.getElementById("answerFinish");
-  const start = document.getElementById("start").value;
-  const end = document.getElementById("end").value;
-  console.log(start, end);
-  ans.innerHTML = "" + graph.dijkstra(start, end);
+  // const start = document.getElementById("start").value;
+  // const end = document.getElementById("end").value;
+  let path = graph.dijkstra(start, end);
+  path.map((el, index) => {});
+};
+
+// This event handler is declared in the node template and is called when a node's
+//   Node.isSelected property changes value.
+// When a node is selected show distances from the first selected node.
+// When a second node is selected, highlight the shortest path between two selected nodes.
+// If a node is deselected, clear all highlights.
+const nodeSelectionChanged = (node) => {
+  console.log(node.lb.key);
+  let diagram = node.diagram;
+  if (diagram === null) return;
+  diagram.clearHighlighteds();
+  if (node.isSelected) {
+    let sel = document.getElementById("myPaths");
+    sel.innerHTML = "";
+    let begin = diagram.selection.first();
+    if (diagram.selection.count === 2) {
+      let end = node; // just became selected
+      console.log("Hola mundo", begin.lb.key, end.lb.key);
+      highlightShortestPath(begin, end);
+      listAllPaths(begin, end);
+    }
+  }
+};
+
+// Assume links are directional.
+const highlightShortestPath = (begin, end) => {
+  highlightPath(collectAllPaths(begin, end));
+};
+
+// Highlight a particular path, a List of Nodes.
+const highlightPath = (path) => {
+  myDiagram.clearHighlighteds();
+  for (let i = 0; i < path.count - 1; i++) {
+    let f = path.get(i);
+    let t = path.get(i + 1);
+    f.findLinksTo(t).each((l) => {
+      l.isHighlighted = true;
+    });
+  }
+};
+
+const collectAllPaths = (begin, end) => {
+  let path = new go.List(/*go.List*/);
+  let pathS = graph.dijkstra(begin.lb.key, end.lb.key);
+  const find = (source) => {
+    source.findNodesOutOf().each((n) => {
+      console.log(n);
+      if (pathS.includes(n)) {
+        path.add(n);
+      }
+    });
+  };
+  find(begin, end);
+  console.log(path);
+  return path;
 };

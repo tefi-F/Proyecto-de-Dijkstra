@@ -1,4 +1,4 @@
-// Esta función inicializa el canvas al entrar a la pagina web
+// Esta función inicializa el canvas al entrar a la página web
 const generateGraphInitial = () => {
   if (window.goSamples) goSamples();
   let $ = go.GraphObject.make;
@@ -14,22 +14,39 @@ const generateGraphInitial = () => {
   myDiagram.nodeTemplate = $(
     go.Node,
     "Auto",
+    {
+      selectionAdorned: false,
+      selectionChanged: nodeSelectionChanged,
+    },
     new go.Binding("location", "loc", go.Point.parse),
-    $(go.Shape, "Circle", {
-      fill: go.Brush.randomColor(128),
-      strokeWidth: 3,
-      desiredSize: new go.Size(60, 60),
-    }),
+    $(
+      go.Shape,
+      "Circle",
+      {
+        name: "Nodo",
+        fill: go.Brush.randomColor(128),
+        strokeWidth: 4,
+        desiredSize: new go.Size(75, 75),
+      },
+      new go.Binding("fill", "isSelected", (s, obj) => {
+        return s ? "red" : obj.part.data.color;
+      }).ofObject()
+    ),
     $(go.TextBlock, { margin: 5 }, new go.Binding("text", "key"))
   );
   myDiagram.linkTemplate = $(
-    go.Link, 
-    {
-      selectable: false,
-      curve: go.Link.Bezier,
-      layerName: "Background",
-    },
-    $(go.Shape, { toArrow: "Standard", strokeWidth: 4 }),
+    go.Link,
+    $(
+      go.Shape,
+      {
+        name: "PathShort",
+        toArrow: "Standard",
+        strokeWidth: 4,
+      },
+      new go.Binding("stroke", "isHighlighted", (h) => {
+        return h ? "red" : "black";
+      }).ofObject()
+    ),
     $(go.TextBlock, new go.Binding("text", "text"), {
       segmentOffset: new go.Point(NaN, NaN),
       segmentOrientation: go.Link.OrientUpright,

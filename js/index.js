@@ -1,4 +1,3 @@
-const ar = [];
 const text = [];
 const nodeDataAr = [];
 const linkDataAr = [];
@@ -31,7 +30,6 @@ const generarNames = () => {
 const generateArray = () => {
   const messages = document.getElementById("messageGenerate");
   let len = parseInt(document.getElementById("len").value);
-  console.info(len);
   if (len < 1) {
     console.error(
       "Error no puede entregar 0 valores para continuar con el cálculo"
@@ -48,12 +46,6 @@ const generateArray = () => {
     graph.addNode(text[i]);
   }
   console.log(text);
-  for (let i = 0; i < len; ++i) {
-    ar.push([]);
-    for (let j = 0; j < len; ++j) {
-      ar[i][j] = 0;
-    }
-  }
   messages.innerHTML = "";
   messages.innerHTML += `<div style="margin: 0.8rem;">
   <p>¿Cuantos caminos hay en el grafo?:</p>
@@ -65,6 +57,5 @@ const generateArray = () => {
   <button type="" class="btn btn-primary" onclick="generateLink();">Generar Camino</button>
   </div>`;
   console.info("Si se pudo crear el array de valores inicializados en 0");
-  console.info(ar);
 };
 
