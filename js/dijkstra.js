@@ -169,6 +169,7 @@ const nodeSelectionChanged = (node) => {
     let finish = document.getElementById("end");
     let begin = diagram.selection.first();
     ans.innerHTML = "";
+    pathAnswer = "";
     start.value = begin.lb.key;
     if (diagram.selection.count === 2) {
       let end = node;

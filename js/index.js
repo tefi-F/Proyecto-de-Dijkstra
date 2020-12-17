@@ -27,7 +27,7 @@ const generarNames = () => {
   }
   messages.innerHTML = "";
   for (let i = 0; i < len; ++i) {
-    messages.innerHTML += `<input type="text" class="input-initial" style="font-size: 1.6rem;" id="text${i}" placeholder="name" required>`;
+    messages.innerHTML += `<input type="text" class="input-initial" style="font-size: 1.6rem; width: 10rem; height: 4.0rem;" id="text${i}" placeholder="name" required>`;
   }
   messages.innerHTML += `<button class="btn btn-success" style="margin-left: 1.0rem; font-size: 2.0rem" onclick="generateArray();">Ingresar Nodos</button>`;
 };
@@ -55,13 +55,12 @@ const generateArray = () => {
   messages.innerHTML = "";
   afterQ.innerHTML = `<div><p style="color:black; font-size: 2.4rem; font-weight: bold;" align=center>¿Cuántos caminos hay entre sus nodos?</p></div>`
   messages.innerHTML += `<div>
-  <div style="margin: 0.8rem; color: black; font-weight: bold;" class="d-flex justiyfy-content-center">
-  <input type="text" placeholder="nodo" class="input-initial" id="valueR1" style="font-size: 1.6rem">
+  <div style="margin: 0.8rem; font-size: 1.6rem; color: black; font-weight: bold;" class="d-flex justiyfy-content-center">
+  <input type="text" placeholder="nodo" class="input-initial" id="valueR1">
   <p>----- path -----</p>
-  
-  <input type="text" placeholder="nodo" class="input-initial" id="valueR2" style="font-size: 1.6rem">
+  <input type="text" placeholder="nodo" class="input-initial" id="valueR2">
   <p>----- length -----</p>
-  <input type="number" placeholder="value" class="input-initial" id="valuePeso" style="font-size: 1.6rem">
-  <button type="" class="btn btn-primary" onclick="generateLink();" style="margin-left: 1.2%;" >Generar Camino</button>
+  <input type="number" placeholder="value" class="input-initial" id="valuePeso">
+  <button type="" class="btn btn-primary" onclick="generateLink();" style="margin-left: 1.2%; " >Generar Camino</button>
   </div>`;
 };
