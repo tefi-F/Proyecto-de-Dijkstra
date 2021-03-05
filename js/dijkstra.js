@@ -205,3 +205,12 @@ const nodeSelectionChanged = (node) => {
     }
   }
 };
+
+console.log("oO08 iIlL1 g9qCGQ *~-+<>=>->");
+console.log("[] {} ()");
+
+function doSomeMath(a = 5, b = 4) {
+  return a > b ? a ** 2 + b ** 2 - a / b : b ** a;
+}
+
+console.log(doSomeMath());
